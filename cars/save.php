@@ -12,7 +12,6 @@ $production_year = readInput($_POST, 'production_year');
 $class_id = readInput($_POST, 'class');
 $price = readInput($_POST, 'price');
 
-// BEGIN TRANSACTION
 $resBegin = mysqli_query($db_conn, "BEGIN;");
 
 $sql = generateInsertQuery('cars', [

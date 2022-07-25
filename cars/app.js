@@ -31,17 +31,14 @@ const updateCarInputs = {
 
 async function filterCars(event = "") {
   event != "" ? event.preventDefault() : "";
-  //const response = await fetch("filterCars.php?"+new URLSearchParams(new FormData(event.target)))
 
   fetch(
     "cars/filterCars.php?" + new URLSearchParams(new FormData(event.target))
   )
     .then(function (response) {
-      // The API call was successful!
       return response.text();
     })
     .then(function (html) {
-      // This is the HTML from our response as a text string
       var myElement = document.getElementById("carsList");
       myElement.innerHTML = html;
       event != "" ? myElement.scrollIntoView(true) : "";
@@ -128,7 +125,7 @@ function totalPrice() {
   }
 }
 
-function validateCar(event) {
+function validateCreateCar(event) {
   event.preventDefault();
 
   let formData = {};
@@ -152,7 +149,6 @@ function validateCarFormData(car) {
     register_number: null,
     production_year: null,
     price_per_day: null,
-    //photos: null,
   };
 
   if (car.brand_id < 1) {
@@ -167,7 +163,6 @@ function validateCarFormData(car) {
     errors.class_id = "Please select class";
   }
 
-  //Uzeto u obzir da su nase tablice u pitanju... Primjer: PG CG 001
   if (car.register_number.length != 7) {
     errors.register_number = "Please insert valid register number";
   }
@@ -214,8 +209,10 @@ function validateAndUpdateCarModal(event) {
   let formData = {};
 
   Object.keys(updateCarInputs).forEach(
-    (inputName) => (formData[inputName] = createCarInputs[inputName].value)
+    (inputName) => (formData[inputName] = updateCarInputs[inputName].value)
   );
+
+  console.log(formData);
 
   if (!validateCarFormData(formData)) {
     return;

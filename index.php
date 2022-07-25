@@ -151,7 +151,7 @@ while ($rowClass = mysqli_fetch_assoc($resClasses)) {
           <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
         </div>
         <div class=" modal-body">
-          <form action="index.php" id="carForm" method="GET" onsubmit="updateCar(event)" enctype="multipart/form-data">
+          <form action="index.php" id="carForm" method="GET" onsubmit="validateAndUpdateCarModal(event)" enctype="multipart/form-data">
             <input type="hidden" name="car_id" id="car_id">
             <div class="form-group mb-3">
               <label for="brand">Brands:</label>
@@ -165,10 +165,12 @@ while ($rowClass = mysqli_fetch_assoc($resClasses)) {
                 }
                 ?>
               </select>
+              <small class="text-danger input-error d-none" id="error-brand_id"></small>
             </div>
             <div class="form-group mb-3">
               <label for="model">Models:</label>
               <select name="model" id="model" class="form-control"> </select>
+              <small class="text-danger input-error d-none" id="error-model_id"></small>
             </div>
             <div class="form-group mb-3">
               <label for="class">Classes:</label>
@@ -182,6 +184,7 @@ while ($rowClass = mysqli_fetch_assoc($resClasses)) {
                 }
                 ?>
               </select>
+              <small class="text-danger input-error d-none" id="error-class_id"></small>
             </div>
             <div class="form-group mb-3">
               <label for="register_number">Register number:</label>
@@ -219,12 +222,10 @@ while ($rowClass = mysqli_fetch_assoc($resClasses)) {
     editModal.addEventListener("show.bs.modal", async function(event) {
       var button = event.relatedTarget;
       var car = JSON.parse(button.getAttribute("data-bs-car"));
-      console.log(car);
       document.getElementById('car_id').value = car.id;
       document.getElementById('brand').value = car.brand_id;
       await loadModels();
       document.getElementById('model').value = car.model_id;
-      console.log(document.getElementById('class'));
       document.getElementById('class').value = car.class_id;
       document.getElementById('register_number').value = car.register_number;
       document.getElementById('production_year').value = car.production_year;

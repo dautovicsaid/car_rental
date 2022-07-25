@@ -8,7 +8,6 @@ const reservationsGrid = document.getElementById("reservations-grid");
 
 var editModal = document.getElementById("editReservationModal");
 editModal.addEventListener("show.bs.modal", async function (event) {
-  // Button that triggered the modal
   var button = event.relatedTarget;
   var reservation = JSON.parse(button.getAttribute("data-bs-reservation"));
   document.getElementById("id").value = reservation.id;

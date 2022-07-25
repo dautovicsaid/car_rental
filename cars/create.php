@@ -24,7 +24,7 @@ authorizeAdmin();
         <div class="row mt-3">
             <h4 class="text-center">Add new car</h4>
             <div class="col-6 offset-3 mt-3">
-                <form action="save.php" id="carForm" method="POST" enctype="multipart/form-data" onsubmit="validateCar(event)">
+                <form action="save.php" id="carForm" method="POST" enctype="multipart/form-data" onsubmit="validateCreateCar(event)">
                     <div class="form-group mb-3">
                         <label for="brand">Brands:</label>
                         <select name="brand" id="brand" class="form-control" onchange="loadModels()">

@@ -204,8 +204,6 @@ while ($reservation = mysqli_fetch_assoc($res)) {
     echo $reservationGrid;
 };
 
-// Rename properly
-
 
 $isInReservationHistory = $reservationUserHistory != "" ? "<div class=\"mt-5\"><h3 class=\"mb-5\">Reservation history</h3>" . $reservationUserHistory . "</div>" : "";
 echo !$is_admin ? $isInReservationHistory : "";
