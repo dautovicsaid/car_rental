@@ -47,15 +47,14 @@ async function updateReservation(event) {
         </div>
     </div>
     `;
-  } else if (responseText == "alreadyReserved") {
+  } else {
     updateMessage.innerHTML = `
     <div class="col-6 offset-3">
         <div class="alert alert-danger" role="alert">
-            Reservation in that date already exists!
+            Reservation update failed!
         </div>
     </div>
     `;
-  } else {
   }
   updateMessage.classList.remove("d-none");
   updateMessage.scrollIntoView(true);
